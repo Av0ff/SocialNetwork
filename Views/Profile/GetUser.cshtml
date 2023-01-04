@@ -1,0 +1,13 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using SocialMedia.Areas.Identity.Data;
+@inject UserManager<User> _user
+
+@{
+	var user = await _user.FindByIdAsync(Model.UserId);
+}
+<h1>@user.UserName</h1>
+<h3>First Name: @Model.FirstName</h3><br />
+<h3>Last Name: @Model.LastName</h3><br />
+<h3>Birth: @Model.Birth</h3><br />
+<h3>Status: @Model.Status</h3>
+

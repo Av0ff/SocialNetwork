@@ -1,0 +1,17 @@
+﻿@using SocialMedia.Areas.Identity.Data
+@model List<User>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <h2>Website in development</h2>
+    <ul>
+    @foreach (var item in Model)
+    {
+            <li><a asp-controller="Profile" asp-action="GetUser" asp-route-userId="@item.Id">@item.UserName</a></li>
+    }
+    </ul>
+
+</div>
