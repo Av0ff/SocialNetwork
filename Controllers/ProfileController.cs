@@ -14,17 +14,31 @@ namespace SocialMedia.Controllers
         private readonly UserManager<User> _manager;
         private readonly SocialMediaContext _db;
 
-        public ProfileController(UserManager<User> manager, SocialMediaContext db)
+		public ProfileController(UserManager<User> manager, SocialMediaContext db)
         {
             _manager = manager;
             _db = db;
-        }
+		}
 
         new public async Task<IActionResult> GetUser(string? userId)
         {
             var profile = new ProfileRepo(_db, _manager);
             var user = await profile.GetUser(userId);
             return View(user);
+        }
+
+        public IActionResult UpdateProfile()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult UpdateProfile(ProfileModel model)
+        {
+            var profile = new ProfileRepo(_db, _manager);
+            var userId = _manager.GetUserId(User);
+            profile.UpdateProfile(userId, model);
+            return RedirectToAction(nameof(GetUser), new { userId = userId });
         }
 
         public IActionResult UploadPost()

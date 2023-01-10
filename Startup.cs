@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using SocialMedia.Areas.Identity.Data;
+using SocialMedia.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

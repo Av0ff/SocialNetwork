@@ -10,4 +10,11 @@
 <h3>Last Name: @Model.LastName</h3><br />
 <h3>Birth: @Model.Birth</h3><br />
 <h3>Status: @Model.Status</h3>
+<hr />
+@{
+	if (user.Id == _user.GetUserId(User))
+	{
+		<input type="button" value="Change" onclick="location.href='@Url.Action("UpdateProfile","Profile")'" />
+	}
+}
 

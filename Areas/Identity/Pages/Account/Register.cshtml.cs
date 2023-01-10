@@ -93,6 +93,7 @@ namespace SocialMedia.Areas.Identity.Pages.Account
                             LastName = user.Email,
                             Status = "I'm a User"
                         };
+
                         await _db.Profiles.AddAsync(profile);
                         await _db.SaveChangesAsync();
                     }

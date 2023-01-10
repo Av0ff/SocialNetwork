@@ -39,17 +39,32 @@ namespace SocialMedia.Models
                 {
                     return null;
                 }
-                //var model = new ProfileModel()
-                //{
-                //    UserId = profile.UserId,
-                //    FirstName = profile.FirstName,
-                //    LastName = profile.LastName,
-                //    Birth = profile.Birth,
-                //    Status = profile.Status
-                //};
+
                 return profile;
             }
         }
+
+        public void UpdateProfile(string? userId, ProfileModel model)
+        {
+			if (userId == null)
+			{
+				return;
+			}
+            else
+            {
+                var profile = Db.Profiles
+                    .Where(p => p.UserId == userId)
+                    .FirstOrDefault();
+
+                profile.FirstName = model.FirstName;
+                profile.LastName = model.LastName;
+                profile.Birth = model.Birth;
+                profile.Status = model.Status;
+
+                Db.Profiles.Update(profile);
+                Db.SaveChanges();
+            }
+		}
     }
     public class ProfileModel
     {

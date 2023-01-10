@@ -1,0 +1,12 @@
+﻿@model ProfileModel
+
+<h2>Change Profile</h2>
+
+<form asp-action="UpdateProfile" method="post">
+	<h3>First Name: <input type="text" asp-for="FirstName"/></h3>
+	<h3>Last Name: <input type="text" asp-for="LastName"/></h3>
+	<h3>Birth: <input type="text" asp-for="Birth"/></h3>
+	<h3>Status: <input type="text" asp-for="Status"/></h3>
+
+	<input type="submit" value="Safe" />
+</form>
