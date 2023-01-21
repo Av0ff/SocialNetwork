@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS\\source\\repos\\SocialMedia\\SocialMedia.csproj": {}
+    "C:\\Users\\ASUS\\Documents\\GitHub\\SocialNetwork\\SocialMedia.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS\\source\\repos\\SocialMedia\\SocialMedia.csproj": {
+    "C:\\Users\\ASUS\\Documents\\GitHub\\SocialNetwork\\SocialMedia.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\source\\repos\\SocialMedia\\SocialMedia.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS\\Documents\\GitHub\\SocialNetwork\\SocialMedia.csproj",
         "projectName": "SocialMedia",
-        "projectPath": "C:\\Users\\ASUS\\source\\repos\\SocialMedia\\SocialMedia.csproj",
+        "projectPath": "C:\\Users\\ASUS\\Documents\\GitHub\\SocialNetwork\\SocialMedia.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\source\\repos\\SocialMedia\\obj\\",
+        "outputPath": "C:\\Users\\ASUS\\Documents\\GitHub\\SocialNetwork\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -49,6 +49,10 @@
               "version": "[5.0.17, )"
             },
             "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[3.1.32, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
               "version": "[3.1.32, )"
             },
