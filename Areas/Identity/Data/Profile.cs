@@ -1,4 +1,7 @@
-﻿namespace SocialMedia.Areas.Identity.Data
+﻿using Microsoft.AspNetCore.Http;
+using System.IO;
+
+namespace SocialMedia.Areas.Identity.Data
 {
     public class Profile
     {
@@ -9,6 +12,7 @@
         public string? LastName { get; set; }
         public string? Birth { get; set; }
         public string? Status { get; set; }
+        public byte[]? Picture { get; set; }
 
     }
 }

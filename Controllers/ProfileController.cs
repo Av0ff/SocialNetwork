@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SocialMedia.Areas.Identity.Data;
 using SocialMedia.Models;
+using System.IO;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -13,31 +16,33 @@ namespace SocialMedia.Controllers
     {
         private readonly UserManager<User> _manager;
         private readonly SocialMediaContext _db;
+		public ProfileRepo Profile { get; }
 
-		public ProfileController(UserManager<User> manager, SocialMediaContext db)
+		public ProfileController(UserManager<User> manager, SocialMediaContext db, ProfileRepo profile)
         {
             _manager = manager;
             _db = db;
+			Profile = profile;
 		}
 
         new public async Task<IActionResult> GetUser(string? userId)
         {
-            var profile = new ProfileRepo(_db, _manager);
-            var user = await profile.GetUser(userId);
+            var user = await Profile.GetUser(userId);
             return View(user);
         }
 
-        public IActionResult UpdateProfile()
+        [HttpGet]
+        public async Task<IActionResult> UpdateProfile()
         {
-            return View();
+            var user = await Profile.GetUser(_manager.GetUserId(User));
+			return View(user);
         }
 
         [HttpPost]
-        public IActionResult UpdateProfile(ProfileModel model)
+        public async Task<IActionResult> UpdateProfile(ProfileModel model)
         {
-            var profile = new ProfileRepo(_db, _manager);
             var userId = _manager.GetUserId(User);
-            profile.UpdateProfile(userId, model);
+            await Profile.UpdateProfile(userId, model);
             return RedirectToAction(nameof(GetUser), new { userId = userId });
         }
 

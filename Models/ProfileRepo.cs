@@ -7,22 +7,26 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SocialMedia.Models
 {
     public class ProfileRepo
     {
-        public ProfileRepo(SocialMediaContext db, UserManager<User> manager)
+        public ProfileRepo(SocialMediaContext db, UserManager<User> manager, IHttpContextAccessor context)
         {
             Db = db;
             Manager = manager;
-        }
+			Context = context;
+		}
 
         public SocialMediaContext Db { get; }
         public UserManager<User> Manager { get; }
+		public IHttpContextAccessor Context { get; }
 
-
-        public async Task<ProfileModel> GetUser(string? userId)
+		public async Task<ProfileModel> GetUser(string? userId)
         {
             if (userId == null)
             {
@@ -32,7 +36,7 @@ namespace SocialMedia.Models
             {
                 var profile = await Db.Profiles
                     .Where(p => p.UserId == userId)
-                    .Select(p => new ProfileModel { FirstName = p.FirstName, LastName = p.LastName, Birth = p.Birth, Status = p.Status, UserId = p.UserId })
+                    .Select(p => new ProfileModel { FirstName = p.FirstName, LastName = p.LastName, Birth = p.Birth, Status = p.Status, UserId = p.UserId, Picture = p.Picture})
                     .FirstOrDefaultAsync();
 
                 if (profile == null)
@@ -44,7 +48,7 @@ namespace SocialMedia.Models
             }
         }
 
-        public void UpdateProfile(string? userId, ProfileModel model)
+        public async Task UpdateProfile(string? userId, ProfileModel model)
         {
 			if (userId == null)
 			{
@@ -55,6 +59,16 @@ namespace SocialMedia.Models
                 var profile = Db.Profiles
                     .Where(p => p.UserId == userId)
                     .FirstOrDefault();
+
+                if (Context.HttpContext.Request.Form.Files.Count > 0)
+                {
+                    IFormFile file = Context.HttpContext.Request.Form.Files.FirstOrDefault();
+                    using (var memo = new MemoryStream())
+                    {
+                        await file.CopyToAsync(memo);
+                        profile.Picture = memo.ToArray();
+                    }
+                }
 
                 profile.FirstName = model.FirstName;
                 profile.LastName = model.LastName;
@@ -73,5 +87,6 @@ namespace SocialMedia.Models
         public string? LastName { get; set; }
         public string? Birth { get; set; }
         public string? Status { get; set; }
+        public byte[]? Picture { get; set; }
     }
 }
