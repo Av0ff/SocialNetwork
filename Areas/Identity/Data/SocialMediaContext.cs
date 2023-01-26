@@ -15,6 +15,7 @@ namespace SocialMedia.Areas.Identity.Data
         public SocialMediaContext(DbContextOptions<SocialMediaContext> options)
             : base(options)
         {
+            Database.EnsureCreated();
         }
         
         public DbSet<Profile> Profiles { get; set; }
