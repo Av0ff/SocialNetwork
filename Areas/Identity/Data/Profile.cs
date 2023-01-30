@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using System.IO;
 
 namespace SocialMedia.Areas.Identity.Data

@@ -3,12 +3,26 @@
 
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
+@inject ProfileRepo Profile
+
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
+    byte[] picture = null;
+
+    if (Profile.GetUser(UserManager.GetUserId(User)).Result.Picture != null)
+    {
+        picture = Profile.GetUser(UserManager.GetUserId(User)).Result.Picture;
+    }
+
     <li class="nav-item">
-            <a id="profile" class="nav-link text-dark" asp-controller="Profile" asp-action="GetUser" asp-route-userId="@UserManager.GetUserId(User)" >@UserManager.GetUserName(User)</a>
+        @if (picture != null){
+            <img src="data:image/*;base64,@(Convert.ToBase64String(picture))" style="width:40px;height:40px; border-radius:50%; border: 1px solid black "/>
+        }
+    </li>
+    <li class="nav-item">
+        <a id="profile" class="nav-link text-dark" asp-controller="Profile" asp-action="GetUser" asp-route-userId="@UserManager.GetUserId(User)" >@UserManager.GetUserName(User)</a>
     </li>
     <li class="nav-item">
         <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Settings</a>
