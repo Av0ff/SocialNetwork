@@ -20,7 +20,7 @@ namespace SocialMedia.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("SocialMediaContextConnection")));
 
-                services.AddDefaultIdentity<User>( ops => ops.SignIn.RequireConfirmedAccount = true )
+                services.AddDefaultIdentity<User>(ops => ops.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<SocialMediaContext>();
 
                 services.Configure<IdentityOptions>( ops => 

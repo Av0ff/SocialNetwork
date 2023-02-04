@@ -1,0 +1,13 @@
+﻿@model PostModel
+
+<form asp-controller="Profile" asp-action="UploadPost" method="post">
+	<div class="text-box">
+		<input type="text" asp-for="Text" placeholder="Begin write" />
+	</div>
+	<div class="image">
+		<input asp-for="Image" type="file"  />
+	</div>
+	<div class="submit">
+		<input type="submit" value="Publish" />
+	</div>
+</form>

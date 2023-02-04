@@ -17,10 +17,15 @@ namespace SocialMedia.Areas.Identity.Data
         {
             Database.EnsureCreated();
         }
-        
         public DbSet<Profile> Profiles { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		{
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseLazyLoadingProxies();
+		}
+		protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             builder.Entity<User>()
@@ -29,7 +34,8 @@ namespace SocialMedia.Areas.Identity.Data
                 .OnDelete(DeleteBehavior.Cascade);
             builder.Entity<Profile>()
                 .HasOne(p => p.User)
-                .WithOne(u => u.Profile);
+                .WithOne(u => u.Profile)
+                .HasForeignKey<Profile>(p => p.UserId);
         }
     }
 }

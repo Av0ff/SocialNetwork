@@ -349,7 +349,6 @@ C:\Users\ASUS\Documents\GitHub\SocialNetwork\obj\Debug\netcoreapp3.1\Razor\Areas
 C:\Users\ASUS\Documents\GitHub\SocialNetwork\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
 C:\Users\ASUS\Documents\GitHub\SocialNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\ASUS\Documents\GitHub\SocialNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
-C:\Users\ASUS\Documents\GitHub\SocialNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Profile\GetUser.cshtml.g.cs
 C:\Users\ASUS\Documents\GitHub\SocialNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Profile\UpdateProfile.cshtml.g.cs
 C:\Users\ASUS\Documents\GitHub\SocialNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\ASUS\Documents\GitHub\SocialNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
@@ -632,3 +631,7 @@ C:\Users\ASUS\Documents\GitHub\SocialNetwork\bin\Debug\netcoreapp3.1\Microsoft.A
 C:\Users\ASUS\Documents\GitHub\SocialNetwork\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
 C:\Users\ASUS\Documents\GitHub\SocialNetwork\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
 C:\Users\ASUS\Documents\GitHub\SocialNetwork\bin\Debug\netcoreapp3.1\System.Text.Json.dll
+C:\Users\ASUS\Documents\GitHub\SocialNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Profile\UserProfile.cshtml.g.cs
+C:\Users\ASUS\Documents\GitHub\SocialNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Profile\_PostPartial.cshtml.g.cs
+C:\Users\ASUS\Documents\GitHub\SocialNetwork\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\ASUS\Documents\GitHub\SocialNetwork\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Proxies.dll
