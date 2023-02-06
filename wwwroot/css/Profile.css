@@ -6,12 +6,24 @@
 .container-profile {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     grid-gap: 20px;
 }
 
 .container-profile > div {
     background-color: #2d2e33;
+}
+
+.container-post {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 100px;
+    grid-gap: 20px;
+}
+
+.container-post div {
+    background-color: #2d2e33;
+    margin-top: 20px;
 }
 
 .user {
@@ -25,5 +37,13 @@
 
 .add-post {
     grid-column: 2/4;
-
 }
+
+.profile-links {
+    grid-column: 1/2;
+}
+
+.profile-post {
+    grid-column: 2/4;
+}
+

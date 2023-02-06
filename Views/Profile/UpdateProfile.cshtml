@@ -1,11 +1,11 @@
-﻿@model ProfileViewModel
+﻿@model ProfileModel
 
 <h2>Change Profile</h2>
 
 <form asp-action="UpdateProfile" method="post" enctype="multipart/form-data">
-	@if(Model.Profile.Picture != null)
+	@if(Model.Picture != null)
 	{
-		<img id="pic" src="data:image/*;base64, @Convert.ToBase64String(Model.Profile.Picture)" style="width:200px; height: 200px" />
+		<img id="pic" src="data:image/*;base64, @Convert.ToBase64String(Model.Picture)" style="width:200px; height: 200px" />
 	}
 	else
 	{
@@ -13,13 +13,13 @@
 	}
 	<input type="file"
 		accept=".png, .jpg, .jpeg, .gif, .tif"
-		asp-for="Profile.Picture"
+		asp-for="Picture"
 		style="border: 0px; padding: 0px; color: #b9b4c5"
 		onchange="document.getElementById('pic').src = window.URL.createObjectURL(this.files[0])"/>
-	<h3>First Name: <input type="text" asp-for="Profile.FirstName" value="@Model?.Profile.FirstName"/></h3>
-	<h3>Last Name: <input type="text" asp-for="Profile.LastName" value="@Model?.Profile.LastName" /></h3>
-	<h3>Birth: <input type="text" asp-for="Profile.Birth" value="@Model?.Profile.Birth" /></h3>
-	<h3>Status: <input type="text" asp-for="Profile.Status" value="@Model?.Profile.Status" /></h3>
+	<h3>First Name: <input type="text" asp-for="FirstName" value="@Model?.FirstName"/></h3>
+	<h3>Last Name: <input type="text" asp-for="LastName" value="@Model?.LastName" /></h3>
+	<h3>Birth: <input type="text" asp-for="Birth" value="@Model?.Birth" /></h3>
+	<h3>Status: <input type="text" asp-for="Status" value="@Model?.Status" /></h3>
 
 	<input type="submit" value="Safe" />
 </form>

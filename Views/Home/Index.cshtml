@@ -19,7 +19,7 @@
                 picture = Profile.GetUser(item.Id).Result.Picture;
                 <img src="data:image/*;base64, @Convert.ToBase64String(picture)" style="width:40px; height:40px; border-radius:50%; border: 1px solid black" />
             }
-            <a asp-controller="Profile" asp-action="GetUser" asp-route-userId="@item.Id">@item.UserName</a>
+            <a asp-controller="Profile" asp-action="UserProfile" asp-route-userId="@item.Id">@item.UserName</a>
         </li>
     }
     </ul>

@@ -30,41 +30,40 @@ namespace SocialMedia.Controllers
 		public async Task<IActionResult> UserProfile(string? userId)
 		{
 			var user = await _profile.GetUser(userId);
-            var viewModel = new ProfileViewModel { Profile = user };
-			return View(viewModel);
+            //var viewModel = new ProfileViewModel { Profile = user };
+			return View(user);
 		}
 
 		[HttpGet]
         public async Task<IActionResult> UpdateProfile()
         {
             var user = await _profile.GetUser(_manager.GetUserId(base.User));
-			var viewModel = new ProfileViewModel { Profile = user };
-			return View(viewModel);
+			//var viewModel = new ProfileViewModel { Profile = user };
+			return View(user);
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateProfile(ProfileViewModel model)
+        public async Task<IActionResult> UpdateProfile(ProfileModel model)
         {
             var userId = _manager.GetUserId(base.User);
-            await _profile.UpdateProfile(userId, model.Profile);
+            await _profile.UpdateProfile(userId, model);
             return RedirectToAction(nameof(UserProfile), new { userId = userId });
         }
 
         [HttpPost]
-        public async Task<IActionResult> UploadPost(PostModel model)
+        public async Task<IActionResult> UploadPost([FromForm]PostModel model)
         {
             await _post.CreatePost(model);
             return RedirectToAction(nameof(UserProfile), new { userId = _manager.GetUserId(User) });
         }
 
         [HttpPut]
-        public async Task<IActionResult> ChangePost(int id, PostModel model)
+        public async Task<IActionResult> ChangePost(int id,[FromForm] PostModel model)
         {
             await _post.UpdatePost(id, model);
 			return RedirectToAction(nameof(UserProfile), new { userId = _manager.GetUserId(User) });
 		}
 
-        [HttpDelete]
         public async Task<IActionResult> RemovePost(int id) 
         {
             await _post.DeletePost(id);
