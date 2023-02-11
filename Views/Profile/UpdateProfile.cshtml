@@ -5,11 +5,11 @@
 <form asp-action="UpdateProfile" method="post" enctype="multipart/form-data">
 	@if(Model.Picture != null)
 	{
-		<img id="pic" src="data:image/*;base64, @Convert.ToBase64String(Model.Picture)" style="width:200px; height: 200px" />
+		<img class="back-color" id="pic" src="data:image/*;base64, @Convert.ToBase64String(Model.Picture)" style="width:200px; height: 200px" />
 	}
 	else
 	{
-		<img id="pic" src=".." style="width:200px;height:200px">
+		<img class="back-color" id="pic" src=".." style="width:200px;height:200px">
 	}
 	<input type="file"
 		accept=".png, .jpg, .jpeg, .gif, .tif"

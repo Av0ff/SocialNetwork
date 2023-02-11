@@ -635,3 +635,4 @@ C:\Users\ASUS\Documents\GitHub\SocialNetwork\obj\Debug\netcoreapp3.1\Razor\Views
 C:\Users\ASUS\Documents\GitHub\SocialNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Profile\_PostPartial.cshtml.g.cs
 C:\Users\ASUS\Documents\GitHub\SocialNetwork\bin\Debug\netcoreapp3.1\Castle.Core.dll
 C:\Users\ASUS\Documents\GitHub\SocialNetwork\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Proxies.dll
+C:\Users\ASUS\Documents\GitHub\SocialNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Home\Posts.cshtml.g.cs

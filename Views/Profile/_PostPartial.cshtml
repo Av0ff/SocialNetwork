@@ -1,13 +1,16 @@
 ﻿@model PostModel
 
-<form asp-controller="Profile" asp-action="UploadPost" method="post">
+<form asp-controller="Profile" asp-action="UploadPost" method="post" enctype="multipart/form-data">
 	<div class="text-box">
-		<input type="text" asp-for="Text" placeholder="Begin write" />
+		<textarea asp-for="Text" style="width:100%" placeholder="Begin write..." ></textarea>
 	</div>
-	<div class="image">
-		<input asp-for="Image" type="file"  />
+	<div class="image" style="display: inline">
+		<input type="file"
+			accept=".png, .jpg, .jpeg, .gif, .tif"
+			asp-for="Image"
+			style="border: 0px; padding: 0px; color: #b9b4c5" />
 	</div>
-	<div class="submit">
+	<div class="submit" style="display: inline">
 		<input type="submit" value="Publish" />
 	</div>
 </form>

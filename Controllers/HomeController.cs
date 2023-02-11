@@ -20,20 +20,29 @@ namespace SocialMedia.Controllers
 
         private readonly UserManager<User> _user;
         private readonly SignInManager<User> _signIn;
+        private readonly PostRepo _post;
 
-        public HomeController(ILogger<HomeController> logger, UserManager<User> user, SignInManager<User> signIn)
-        {
-            _logger = logger;
-            _user = user;
-            _signIn = signIn;
-        }
+		public HomeController(ILogger<HomeController> logger, UserManager<User> user, SignInManager<User> signIn, PostRepo post)
+		{
+			_logger = logger;
+			_user = user;
+			_signIn = signIn;
+			_post = post;
+		}
 
-        [Authorize]
+		[Authorize]
         public async Task<IActionResult> Index()
         {
             var allUsers = _user.Users.ToList();
             allUsers.Remove(await _user.GetUserAsync(User));
             return View(allUsers);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Posts()
+        {
+            var posts = await _post.AllPosts().OrderByDescending(p => p.Id).ToListAsync();
+            return View(posts);
         }
 
         public IActionResult Privacy()

@@ -23,7 +23,7 @@ namespace SocialMedia.Areas.Identity
                 services.AddDefaultIdentity<User>(ops => ops.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<SocialMediaContext>();
 
-                services.Configure<IdentityOptions>( ops => 
+                services.Configure<IdentityOptions>(ops => 
                 {
                     ops.Password.RequireNonAlphanumeric = false;
                     ops.Password.RequireUppercase = false;

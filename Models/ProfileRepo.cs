@@ -43,7 +43,27 @@ namespace SocialMedia.Models
                 {
                     return null;
                 }
+                return profile;
+            }
+        }
 
+        public async Task<ProfileModel> GetProfile(int? profileId)
+        {
+            if (profileId == null) 
+            { 
+                return null;
+            }
+            else
+            {
+                var profile = await Db.Profiles
+                    .Where(p => p.Id == profileId)
+                    .Select(p => new ProfileModel { FirstName = p.FirstName, LastName = p.LastName, Birth = p.Birth, Status = p.Status, UserId = p.UserId, Picture = p.Picture })
+                    .FirstOrDefaultAsync();
+
+                if (profile == null)
+                {
+                    return null;
+                }
                 return profile;
             }
         }
