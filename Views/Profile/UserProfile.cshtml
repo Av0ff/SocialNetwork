@@ -1,0 +1,72 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using SocialMedia.Areas.Identity.Data;
+@using System.Security.Claims;
+@inject UserManager<User> _user
+@inject PostRepo _post
+@model ProfileModel
+
+@{
+	User user = await _user.FindByIdAsync(Model.UserId);
+}
+
+<section class="container-profile">
+	<div class="user">
+		<div class="form-group" style="display: flex; justify-content: center">
+			@if (Model.Picture != null)
+			{
+				<img id="profilePicture" style="width: 200px; height: 200px; object-fit: fill" src="data:image/*;base64,@(Convert.ToBase64String(Model.Picture))" />
+			}
+			else
+			{
+				<img class="back-color" id="profilePicture" style="width: 200px; height: 200px;" />
+			}
+		</div>
+		<h1 style="text-align: center">@user.UserName</h1>
+		<h5 style="text-align: center">Status: @Model.Status</h5>
+	</div>
+	<div class="info">
+		<h5>First Name: @Model.FirstName</h5>
+		<h5>Last Name: @Model.LastName</h5>
+		<h5>Birth: @Model.Birth</h5>
+		<div class="button">
+			@{
+				if (user.Id == _user.GetUserId(User))
+				{
+					<input type="button" value="Change" onclick="location.href='@Url.Action("UpdateProfile","Profile")'" />
+				}
+			}
+		</div>
+	</div>
+
+	<div class="add-post">
+		@if (user.Id == _user.GetUserId(User))
+		{
+			<partial name="_PostPartial.cshtml" model="new PostModel()" />
+		}
+	</div>
+
+
+</section>
+<section class="container-post">
+	<div class="profile-links">
+
+	</div>
+	@if (_post.GetUserPosts(user.Profile.Id).Count() > 0)
+	{
+		foreach (var post in _post.GetUserPosts(user.Profile.Id).OrderByDescending(n => n.Id))
+		{
+			<div class="profile-post" style="padding: 40px">
+				@if (post.Image != null)
+				{
+					<img style="width: 200px; height: 200px; object-fit: fill; max-height: 100%" src="data:image/*;base64,@(Convert.ToBase64String(post.Image))" />
+				}
+				<p style="text-align: start; padding: 40px 0 0 100px">@post.Text</p>
+
+				@if (user.Id == _user.GetUserId(User))
+				{
+					<input type="button" style="display:flex" value="Delete" onclick="location.href='@Url.Action("RemovePost","Profile", new { id = post.Id })'"/>
+				}
+			</div>
+		}
+	}
+</section>
